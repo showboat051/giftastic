@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id = "action"></div>
+    <input id= "tags"></input>
+    <button id ="magic">Here the Magic Lies....</button>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        
+         $("#magic").on("click", function() {
+          var input = $('#tags').val();
+          //When clicking the magic button
+          var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=" + input;
+          
+          // Accesses the API
+          $.ajax({
+        url: queryURL,
+        method: "GET"
+      }).then(function(response){
+         var results = response.data;
+         console.log(response.data)
+         var APIkey = "ohbP7T6SUB6JCNw5hj3KVsuXIhgUlaVq";
+         var imageUrl = response.data.image_original_url;  
+
+         var gameImage = $("<img>");
+         gameImage.attr("src", imageUrl);
+         gameImage.attr("alt", "game image");
+         gameImage.appendTo('#action');
+
+         // Adds images to the beginning of the page 
+         });
+         });
+    </script>
+</body>
+</html>
